@@ -179,6 +179,10 @@ async def login(user_data: UserLogin):
         }
     }
 
+@app.get("/api/auth/me")
+async def get_current_user_info(current_user: User = Depends(get_current_user)):
+    return current_user
+
 # Chatbot endpoints
 @app.post("/api/chatbots", response_model=Chatbot)
 async def create_chatbot(chatbot_data: ChatbotCreate, current_user: User = Depends(get_current_user)):
